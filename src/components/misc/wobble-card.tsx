@@ -7,10 +7,12 @@ export const WobbleCard = ({
   children,
   containerClassName,
   className,
+  href,
 }: {
   children: React.ReactNode;
   containerClassName?: string;
   className?: string;
+  href?: string;
 }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -23,7 +25,7 @@ export const WobbleCard = ({
     setMousePosition({ x, y });
   };
   return (
-    <motion.section
+    <motion.a
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => {
@@ -37,9 +39,10 @@ export const WobbleCard = ({
         transition: "transform 0.1s ease-out",
       }}
       className={cn(
-        "mx-auto w-full bg-indigo-800  relative rounded-2xl overflow-hidden",
+        "mx-auto w-full bg-indigo-800  relative rounded-2xl overflow-hidden cursor-pointer",
         containerClassName
       )}
+      href={href}
     >
       <div
         className="relative  h-full [background-image:radial-gradient(88%_100%_at_top,rgba(255,255,255,0.5),rgba(255,255,255,0))]  sm:mx-0 sm:rounded-2xl overflow-hidden"
@@ -61,7 +64,7 @@ export const WobbleCard = ({
           {children}
         </motion.div>
       </div>
-    </motion.section>
+    </motion.a>
   );
 };
 

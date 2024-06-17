@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-const { fontFamily } = require("tailwindcss/defaultTheme");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
@@ -34,7 +33,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-geist-mono)'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -103,6 +103,10 @@ const config = {
             transform: "translate(-50%,-40%) scale(1)",
           },
         },
+        grid: {
+          "0%": { transform: "translateY(-50%)" },
+          "100%": { transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -110,6 +114,7 @@ const config = {
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
         spotlight: "spotlight 2s ease .75s 1 forwards",
+        grid: "grid 15s linear infinite",
       },
     },
   },

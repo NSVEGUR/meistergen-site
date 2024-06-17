@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Menu, Package2, Search } from "lucide-react";
 
@@ -8,10 +10,13 @@ import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/config/site.config";
 import Logo from "@/lib/images/logo.png";
 import Image from "next/image";
+import { ThemeSwitcher } from "./theme-switcher";
+import { usePathname } from "next/navigation";
 
 interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export default function Header({ className, ...props }: HeaderProps) {
+  const pathname = usePathname();
   return (
     <header
       className={cn(
@@ -28,15 +33,22 @@ export default function Header({ className, ...props }: HeaderProps) {
           height={100}
           className="w-16"
         />
-        {siteConfig.navigation.map(({ title, href }) => (
-          <Link
-            href={href}
-            key={title}
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            {title}
-          </Link>
-        ))}
+        {siteConfig.navigation.map(({ title, href }) => {
+          const active =
+            href == "/products" ? pathname.includes(href) : href == pathname;
+          return (
+            <Link
+              href={href}
+              key={title}
+              className={cn(
+                "text-muted-foreground transition-colors hover:text-foreground",
+                active && "text-black dark:text-white font-semibold"
+              )}
+            >
+              {title}
+            </Link>
+          );
+        })}
       </nav>
       <Sheet>
         <SheetTrigger asChild>
@@ -77,6 +89,7 @@ export default function Header({ className, ...props }: HeaderProps) {
             />
           </div>
         </form>
+        <ThemeSwitcher />
       </div>
     </header>
   );

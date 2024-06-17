@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
-export default function Contact() {
+export default function ContactPage() {
   return (
     <main className="p-20">
       <Card className="mx-auto max-w-md">

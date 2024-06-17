@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
-import { Inter as FontSans } from "next/font/google";
 
-import { cn } from "@/lib/utils";
 import Header from "@/components/header";
 import { siteConfig } from "@/lib/config/site.config";
 import { Footer } from "@/components/footer";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+import { ThemeProvider } from "@/lib/providers/theme-provider";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 
 export const metadata: Metadata = {
   title: siteConfig.title,
@@ -23,16 +19,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        <Header />
-        {children}
-        <Footer />
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="min-h-screen bg-background font-sans antialiased">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

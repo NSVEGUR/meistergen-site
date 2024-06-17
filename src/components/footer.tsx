@@ -8,13 +8,12 @@ import { FooterLink } from "./footer-link";
 const navigation = {
   general: [
     { name: "Geo Res", href: "/docs" },
-    { name: "Home Automation", href: "/docs/reference/command-line-reference" },
     { name: "Blog", href: "/blog" },
     { name: "Releases", href: "https://github.com/vercel/turborepo/releases" },
     { name: "FAQ", href: "/docs/faq" },
   ],
   company: [
-    { name: "GitHub", href: "https://github.com/vercel" },
+    { name: "About", href: "/about" },
     { name: "Twitter", href: "https://twitter.com/vercel" },
     { name: "Linkedin", href: "https://twitter.com/vercel" },
   ],
